@@ -35,6 +35,14 @@ public class BookService {
         return books.stream().filter(book -> book.getTitle().contains(title)).collect(Collectors.toSet());
     }
 
+    public void save(Book book) {
+        this.books.add(book);
+    }
+
+    public void delete(Book book) {
+        this.books.remove(book);
+    }
+
     private Set<Book> exampleData() {
         Set<Book> books = new HashSet<>();
         books.add(new Book("Cracking the Coding Interview: 189 Programming Questions and Solutions", "Gayle Laakmann McDowell", "2015", BookType.IT));
