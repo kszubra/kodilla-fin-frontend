@@ -18,6 +18,6 @@ public class PaymentFacade {
     }
 
     public List<Payment> getPayments() {
-        return paymentMapper.mapToPaymentList( paymentClient.getPayments() );
+        return paymentMapper.mapToPaymentListFromBackend( paymentClient.getPayments() );
     }
 }

@@ -1,5 +1,7 @@
 package com.kodilla.kodillafinalfrontend.backend.api.payment.domain.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.kodilla.kodillafinalfrontend.backend.api.payment.PaymentStatus;
 import lombok.*;
 
@@ -11,11 +13,16 @@ import java.util.regex.Pattern;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder(toBuilder = true)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class PaymentDto {
 
+    @JsonProperty("id")
     private Long id;
+    @JsonProperty("status")
     private PaymentStatus status;
+    @JsonProperty("value")
     private BigDecimal value;
+    @JsonProperty("paymentDate")
     private String paymentDate;
 
     public boolean hasValidDate() {
