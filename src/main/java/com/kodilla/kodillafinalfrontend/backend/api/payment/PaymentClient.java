@@ -5,6 +5,7 @@ import com.kodilla.kodillafinalfrontend.backend.api.payment.domain.dto.PaymentLi
 import com.kodilla.kodillafinalfrontend.config.AdminConfig;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.*;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
@@ -72,5 +73,52 @@ public class PaymentClient {
 
         return new PaymentListDto( new ArrayList<>());
     }
+
+    public Integer addPayment(final PaymentDto dto){
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        HttpEntity<PaymentDto> request = new HttpEntity<>(dto, headers);
+
+        URI url = UriComponentsBuilder.fromHttpUrl(adminConfig.getBackendHostAddress())
+                .path("/payments")
+                .build().encode().toUri();
+
+        try{
+            return restTemplate.exchange(url, HttpMethod.POST, request, Integer.class).getStatusCodeValue();
+        } catch(RestClientException e) {
+            log.error(e.getMessage(), e);
+            return -1;
+        }
+
+    }
+
+    public PaymentDto updatePayment(final PaymentDto updatingDto){
+
+        if(updatingDto.getId() > 0) {
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+
+            HttpEntity<PaymentDto> request = new HttpEntity<>(updatingDto, headers);
+
+            URI url = UriComponentsBuilder.fromHttpUrl(adminConfig.getBackendHostAddress())
+                    .path("/payments")
+                    .build().encode().toUri();
+
+            try{
+                return restTemplate.exchange(url, HttpMethod.PUT, request, PaymentDto.class).getBody();
+            } catch(RestClientException e) {
+                log.error(e.getMessage(), e);
+                return new PaymentDto();
+            }
+        }
+
+        return new PaymentDto();
+    }
+
+
+
+
 
 }

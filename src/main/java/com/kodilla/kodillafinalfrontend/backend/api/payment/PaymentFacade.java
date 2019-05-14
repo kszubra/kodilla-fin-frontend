@@ -24,4 +24,12 @@ public class PaymentFacade {
     public List<Payment> getPaymentsByDate(String date) {
         return paymentMapper.mapToPaymentListFromPaymentListDto( paymentClient.getPaymentsByDate(date) );
     }
+
+    public Integer addPayment(Payment payment) {
+        return paymentClient.addPayment( paymentMapper.mapToDto(payment) );
+    }
+
+    public Payment updatePayment(Payment payment) {
+        return paymentMapper.mapToPayment( paymentClient.updatePayment( paymentMapper.mapToDto(payment) ) );
+    }
 }
