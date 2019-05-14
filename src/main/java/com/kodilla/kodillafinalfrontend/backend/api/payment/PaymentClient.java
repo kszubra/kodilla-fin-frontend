@@ -1,6 +1,7 @@
 package com.kodilla.kodillafinalfrontend.backend.api.payment;
 
 import com.kodilla.kodillafinalfrontend.backend.api.payment.domain.dto.PaymentDto;
+import com.kodilla.kodillafinalfrontend.backend.api.payment.domain.dto.PaymentListDto;
 import com.kodilla.kodillafinalfrontend.config.AdminConfig;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -11,8 +12,8 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
+import java.util.regex.Pattern;
 
 @Component
 @AllArgsConstructor
@@ -36,19 +37,40 @@ public class PaymentClient {
 
     }
 
-    public Object getPayments(){
+    public PaymentListDto getPayments(){
         URI url = UriComponentsBuilder.fromHttpUrl(adminConfig.getBackendHostAddress())
                 .path("/payments")
                 .build().encode().toUri();
 
         try{
-            Object response = restTemplate.getForObject(url, Object.class);
-            return Optional.ofNullable(response).orElse(new Object());
+            PaymentListDto response = restTemplate.getForObject(url, PaymentListDto.class);
+            return Optional.ofNullable(response).orElse(new PaymentListDto());
         } catch(RestClientException e) {
             log.error(e.getMessage(), e);
-            return new Object();
+            return new PaymentListDto();
         }
 
+    }
+
+    public PaymentListDto getPaymentsByDate(final String date){
+        Pattern datePattern = Pattern.compile("^((19|2[0-9])[0-9]{2})-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$");
+
+        if( datePattern.matcher( date ).matches() ) {
+
+            URI url = UriComponentsBuilder.fromHttpUrl(adminConfig.getBackendHostAddress() + "/payments/")
+                    .queryParam("date", date)
+                    .build().encode().toUri();
+
+            try{
+                PaymentListDto response = restTemplate.getForObject(url, PaymentListDto.class);
+                return Optional.ofNullable(response).orElse(new PaymentListDto());
+            } catch(RestClientException e) {
+                log.error(e.getMessage(), e);
+                return new PaymentListDto();
+            }
+        }
+
+        return new PaymentListDto( new ArrayList<>());
     }
 
 }

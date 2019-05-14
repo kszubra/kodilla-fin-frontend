@@ -20,7 +20,7 @@ public class PaymentFacadeTest {
     @Test
     public void testGetPaymentById() {
         //Given
-        Payment testPayment = paymentFacade.getPayment(13L);
+        Payment testPayment = paymentFacade.getPayment(5L);
 
         //Then
         assertNotNull(testPayment);
@@ -31,6 +31,26 @@ public class PaymentFacadeTest {
     public void testGetAllPayments() {
         //Given
         List<Payment> testPayments = paymentFacade.getPayments();
+
+        //Then
+        assertNotNull(testPayments);
+        testPayments.forEach(System.out::println);
+    }
+
+    @Test
+    public void testGetPaymentsByDateWithWrongFormat() {
+        //Given
+        List<Payment> testPayments = paymentFacade.getPaymentsByDate("sadas");
+
+        //Then
+        assertNotNull(testPayments);
+        testPayments.forEach(System.out::println);
+    }
+
+    @Test
+    public void testGetPaymentsByDate() {
+        //Given
+        List<Payment> testPayments = paymentFacade.getPaymentsByDate("2019-08-15");
 
         //Then
         assertNotNull(testPayments);

@@ -3,6 +3,7 @@ package com.kodilla.kodillafinalfrontend.backend.api.payment.mapper;
 import com.kodilla.kodillafinalfrontend.backend.api.payment.PaymentStatus;
 import com.kodilla.kodillafinalfrontend.backend.api.payment.domain.Payment;
 import com.kodilla.kodillafinalfrontend.backend.api.payment.domain.dto.PaymentDto;
+import com.kodilla.kodillafinalfrontend.backend.api.payment.domain.dto.PaymentListDto;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -26,31 +27,17 @@ public class PaymentMapper {
                 .build();
     }
 
-    private Payment mapToCPaymentFromBackend(Map<String, Object> response) {
-        Payment payment = new Payment();
-        payment.setId( Long.valueOf( (Integer)response.get("id") ) );
+    public List<Payment> mapToPaymentListFromPaymentListDto(PaymentListDto dto) {
+        List<PaymentDto> dtoList = dto.getPayments();
 
-        if ( ((String)response.get("paymentDate")).length() == 10 ) {
-            payment.setPaymentDate( LocalDate.parse( (String)response.get("paymentDate") ) );
-        } else {
-            payment.setPaymentDate(null);
-        }
-        payment.setStatus( PaymentStatus.valueOf( (String)response.get("status") ) );
-        payment.setValue( BigDecimal.valueOf( (Double)response.get("value") ) );
+        return this.mapToPaymentList(dtoList);
 
-        return payment;
     }
 
-    public List<Payment> mapToPaymentListFromBackend(final Object object) {
-        ArrayList<Map<String, Object>> dtoList = (ArrayList<Map<String, Object>>) object;
-        List<Payment> paymentsToReturn = new ArrayList<>();
-
-        for( Map<String, Object> paymentMap : dtoList ) {
-            paymentsToReturn.add( this.mapToCPaymentFromBackend(paymentMap) );
-        }
-
-        return paymentsToReturn;
-
+    public List<Payment> mapToPaymentList(final List<PaymentDto> dtoList) {
+        return dtoList.stream()
+                .map(this::mapToPayment)
+                .collect(Collectors.toList());
     }
 
     /**
