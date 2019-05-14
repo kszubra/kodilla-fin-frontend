@@ -1,17 +1,13 @@
 package com.kodilla.kodillafinalfrontend.backend.api.payment.mapper;
 
-import com.kodilla.kodillafinalfrontend.backend.api.payment.PaymentStatus;
 import com.kodilla.kodillafinalfrontend.backend.api.payment.domain.Payment;
 import com.kodilla.kodillafinalfrontend.backend.api.payment.domain.dto.PaymentDto;
 import com.kodilla.kodillafinalfrontend.backend.api.payment.domain.dto.PaymentListDto;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @Component

@@ -117,7 +117,6 @@ public class ReservationFacadeTest {
     public void testDeleteingReservation() {
         //Given
         reservationFacade.deleteReservation(14L);
-
     }
 
     @Test
