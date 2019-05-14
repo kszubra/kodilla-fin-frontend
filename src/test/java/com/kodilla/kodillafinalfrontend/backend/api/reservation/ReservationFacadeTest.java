@@ -112,4 +112,40 @@ public class ReservationFacadeTest {
         //Then
         System.out.println(result);;
     }
+
+    @Test
+    public void testDeleteingReservation() {
+        //Given
+        reservationFacade.deleteReservation(14L);
+
+    }
+
+    @Test
+    public void testCountingReservationsInCity() {
+        //Given
+        ReservationCreationDto creationDto = ReservationCreationDto.builder()
+                .returnFlightDate("2019-04-15")
+                .thereFlightDate("2019-08-20")
+                .thereFlightDepartureCity( "Warsaw" )
+                .thereFlightDepartureAirportCode( "WAW" )
+                .thereFlightDestinationCity( "Hanover" )
+                .thereFlightDestinationAirportCode( "HAJ" )
+                .returnFlightDepartureCity( "Hanover" )
+                .returnFlightDepartureAirportCode( "HAJ" )
+                .returnFlightDestinationCity( "Warsaw" )
+                .returnFlightDestinationAirportCode( "WAW" )
+                .name( "John" )
+                .surname( "Rambo" )
+                .email( "rambo@rambo.com" )
+                .price(BigDecimal.valueOf(555,66))
+                .build();
+        reservationFacade.addReservation( creationDto );
+
+        //when
+        int result = reservationFacade.countReservationsInCity("Hanover");
+
+        //Then
+        assertTrue(result > 0);
+
+    }
 }

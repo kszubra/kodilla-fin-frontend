@@ -31,7 +31,15 @@ public class ReservationFacade {
         return reservationClient.addReservation(dto);
     }
 
-    public Reservation updateReservation(ReservationDto updatingDto) {
+    public Reservation updateReservation(final ReservationDto updatingDto) {
         return reservationMapper.mapToReservation( reservationClient.updateReservation(updatingDto) );
+    }
+
+    public void deleteReservation(final Long id) {
+        reservationClient.deleteReservation(id);
+    }
+
+    public Integer countReservationsInCity(final String city) {
+       return reservationClient.countReservationsInCity(city);
     }
 }

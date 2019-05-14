@@ -40,6 +40,28 @@ public class ReservationClient {
         }
     }
 
+    public void deleteReservation(final Long id) {
+        URI url = UriComponentsBuilder.fromHttpUrl(adminConfig.getBackendHostAddress())
+                .path("/reservations/" + id)
+                .build().encode().toUri();
+        try{
+            restTemplate.delete(url);
+        } catch(RestClientException e) {
+            log.error(e.getMessage(), e);
+        }
+    }
+
+    public Integer countReservationsInCity(final String city) {
+        URI url = UriComponentsBuilder.fromHttpUrl(adminConfig.getBackendHostAddress() + "/reservations/count/" + city)
+                .build().encode().toUri();
+        try{
+            return restTemplate.getForObject(url, Integer.class);
+        } catch(RestClientException e) {
+            log.error(e.getMessage(), e);
+            return -1;
+        }
+    }
+
     public ReservationListDto getReservations(){
         URI url = UriComponentsBuilder.fromHttpUrl(adminConfig.getBackendHostAddress())
                 .path("/reservations")
