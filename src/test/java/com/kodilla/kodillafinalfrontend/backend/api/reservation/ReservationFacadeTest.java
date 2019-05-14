@@ -2,11 +2,9 @@ package com.kodilla.kodillafinalfrontend.backend.api.reservation;
 
 import com.kodilla.kodillafinalfrontend.backend.api.payment.PaymentStatus;
 import com.kodilla.kodillafinalfrontend.backend.api.payment.domain.dto.PaymentDto;
-import com.kodilla.kodillafinalfrontend.backend.api.reservation.domain.Reservation;
 import com.kodilla.kodillafinalfrontend.backend.api.reservation.domain.dto.ReservationCreationDto;
 import com.kodilla.kodillafinalfrontend.backend.api.reservation.domain.dto.ReservationDto;
 import org.junit.Test;
-import org.junit.rules.Timeout;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -26,7 +24,7 @@ public class ReservationFacadeTest {
     @Test
     public void testGetReservation() {
         //When
-        Reservation testReservation = reservationFacade.getReservationById(4L);
+        ReservationDto testReservation = reservationFacade.getReservationById(4L);
 
         //Then
         System.out.println(testReservation);
@@ -35,7 +33,7 @@ public class ReservationFacadeTest {
     @Test
     public void testGetAllReservations() {
         //When
-        List<Reservation> testReservations = reservationFacade.getAllReservations();
+        List<ReservationDto> testReservations = reservationFacade.getAllReservations();
 
         //Then
         testReservations.forEach(System.out::println);
@@ -44,7 +42,7 @@ public class ReservationFacadeTest {
     @Test
     public void testGetReservationsBySurname() {
         //When
-        List<Reservation> testReservations = reservationFacade.getReservationBySurname("seed");
+        List<ReservationDto> testReservations = reservationFacade.getReservationBySurname("seed");
 
         //Then
         testReservations.forEach(System.out::println);
@@ -107,7 +105,7 @@ public class ReservationFacadeTest {
                 .build();
 
         //When
-        Reservation result = reservationFacade.updateReservation(dto);
+        ReservationDto result = reservationFacade.updateReservation(dto);
 
         //Then
         System.out.println(result);;
@@ -116,7 +114,7 @@ public class ReservationFacadeTest {
     @Test
     public void testDeleteingReservation() {
         //Given
-        reservationFacade.deleteReservation(14L);
+        reservationFacade.deleteReservation(35L);
     }
 
     @Test

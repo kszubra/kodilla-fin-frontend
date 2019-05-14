@@ -1,6 +1,5 @@
 package com.kodilla.kodillafinalfrontend.backend.api.reservation;
 
-import com.kodilla.kodillafinalfrontend.backend.api.reservation.domain.Reservation;
 import com.kodilla.kodillafinalfrontend.backend.api.reservation.domain.dto.ReservationCreationDto;
 import com.kodilla.kodillafinalfrontend.backend.api.reservation.domain.dto.ReservationDto;
 import com.kodilla.kodillafinalfrontend.backend.api.reservation.mapper.ReservationMapper;
@@ -15,15 +14,15 @@ public class ReservationFacade {
     private final ReservationClient reservationClient;
     private final ReservationMapper reservationMapper;
 
-    public Reservation getReservationById(final Long id) {
-        return reservationMapper.mapToReservation( reservationClient.getReservationById(id) );
+    public ReservationDto getReservationById(final Long id) {
+        return reservationClient.getReservationById(id);
     }
 
-    public List<Reservation> getReservationBySurname(final String surname) {
+    public List<ReservationDto> getReservationBySurname(final String surname) {
         return reservationMapper.mapToReservationListFromReservationListDto( reservationClient.getReservationsBySurname(surname) );
     }
 
-    public List<Reservation> getAllReservations() {
+    public List<ReservationDto> getAllReservations() {
         return reservationMapper.mapToReservationListFromReservationListDto( reservationClient.getReservations() );
     }
 
@@ -31,8 +30,8 @@ public class ReservationFacade {
         return reservationClient.addReservation(dto);
     }
 
-    public Reservation updateReservation(final ReservationDto updatingDto) {
-        return reservationMapper.mapToReservation( reservationClient.updateReservation(updatingDto) );
+    public ReservationDto updateReservation(final ReservationDto updatingDto) {
+        return reservationClient.updateReservation(updatingDto);
     }
 
     public void deleteReservation(final Long id) {

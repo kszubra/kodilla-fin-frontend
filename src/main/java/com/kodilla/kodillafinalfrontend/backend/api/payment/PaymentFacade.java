@@ -1,6 +1,6 @@
 package com.kodilla.kodillafinalfrontend.backend.api.payment;
 
-import com.kodilla.kodillafinalfrontend.backend.api.payment.domain.Payment;
+import com.kodilla.kodillafinalfrontend.backend.api.payment.domain.dto.PaymentDto;
 import com.kodilla.kodillafinalfrontend.backend.api.payment.mapper.PaymentMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -13,23 +13,23 @@ public class PaymentFacade {
     private final PaymentClient paymentClient;
     private final PaymentMapper paymentMapper;
 
-    public Payment getPayment(Long id) {
-        return paymentMapper.mapToPayment( paymentClient.getPayment(id) );
+    public PaymentDto getPayment(Long id) {
+        return paymentClient.getPayment(id);
     }
 
-    public List<Payment> getPayments() {
+    public List<PaymentDto> getPayments() {
         return paymentMapper.mapToPaymentListFromPaymentListDto( paymentClient.getPayments() );
     }
 
-    public List<Payment> getPaymentsByDate(String date) {
+    public List<PaymentDto> getPaymentsByDate(String date) {
         return paymentMapper.mapToPaymentListFromPaymentListDto( paymentClient.getPaymentsByDate(date) );
     }
 
-    public Integer addPayment(Payment payment) {
-        return paymentClient.addPayment( paymentMapper.mapToDto(payment) );
+    public Integer addPayment(PaymentDto dto) {
+        return paymentClient.addPayment(dto);
     }
 
-    public Payment updatePayment(Payment payment) {
-        return paymentMapper.mapToPayment( paymentClient.updatePayment( paymentMapper.mapToDto(payment) ) );
+    public PaymentDto updatePayment(PaymentDto dto) {
+        return paymentClient.updatePayment(dto);
     }
 }

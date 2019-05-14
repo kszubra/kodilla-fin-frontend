@@ -1,6 +1,6 @@
 package com.kodilla.kodillafinalfrontend.backend.api.payment;
 
-import com.kodilla.kodillafinalfrontend.backend.api.payment.domain.Payment;
+import com.kodilla.kodillafinalfrontend.backend.api.payment.domain.dto.PaymentDto;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ public class PaymentFacadeTest {
     @Test
     public void testGetPaymentById() {
         //When
-        Payment testPayment = paymentFacade.getPayment(5L);
+        PaymentDto testPayment = paymentFacade.getPayment(5L);
 
         //Then
         assertNotNull(testPayment);
@@ -32,7 +32,7 @@ public class PaymentFacadeTest {
     @Test
     public void testGetAllPayments() {
         //When
-        List<Payment> testPayments = paymentFacade.getPayments();
+        List<PaymentDto> testPayments = paymentFacade.getPayments();
 
         //Then
         assertNotNull(testPayments);
@@ -42,7 +42,7 @@ public class PaymentFacadeTest {
     @Test
     public void testGetPaymentsByDateWithWrongFormat() {
         //When
-        List<Payment> testPayments = paymentFacade.getPaymentsByDate("sadas");
+        List<PaymentDto> testPayments = paymentFacade.getPaymentsByDate("sadas");
 
         //Then
         assertNotNull(testPayments);
@@ -52,7 +52,7 @@ public class PaymentFacadeTest {
     @Test
     public void testGetPaymentsByDate() {
         //When
-        List<Payment> testPayments = paymentFacade.getPaymentsByDate("2019-08-15");
+        List<PaymentDto> testPayments = paymentFacade.getPaymentsByDate("2019-08-15");
 
         //Then
         assertNotNull(testPayments);
@@ -62,9 +62,9 @@ public class PaymentFacadeTest {
     @Test
     public void testAddPayment() {
         //Given
-        Payment testPayment =Payment.builder()
+        PaymentDto testPayment = PaymentDto.builder()
                 .status(PaymentStatus.PAID)
-                .paymentDate(LocalDate.now())
+                .paymentDate(LocalDate.now().toString())
                 .value(BigDecimal.valueOf(666.66))
                 .build();
         Integer response = paymentFacade.addPayment(testPayment);
@@ -77,13 +77,13 @@ public class PaymentFacadeTest {
     @Test
     public void testUpdatePayment() {
         //Given
-        Payment testPayment =Payment.builder()
+        PaymentDto testPayment = PaymentDto.builder()
                 .id(19L)
                 .status(PaymentStatus.AWAITING)
-                .paymentDate(LocalDate.now())
+                .paymentDate(LocalDate.now().toString())
                 .value(BigDecimal.valueOf(99.66))
                 .build();
-        Payment response = paymentFacade.updatePayment(testPayment);
+        PaymentDto response = paymentFacade.updatePayment(testPayment);
 
         //Then
         assertEquals(testPayment, response);
