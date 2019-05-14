@@ -21,7 +21,7 @@ public class PaymentFacadeTest {
 
     @Test
     public void testGetPaymentById() {
-        //Given
+        //When
         Payment testPayment = paymentFacade.getPayment(5L);
 
         //Then
@@ -31,7 +31,7 @@ public class PaymentFacadeTest {
 
     @Test
     public void testGetAllPayments() {
-        //Given
+        //When
         List<Payment> testPayments = paymentFacade.getPayments();
 
         //Then
@@ -41,7 +41,7 @@ public class PaymentFacadeTest {
 
     @Test
     public void testGetPaymentsByDateWithWrongFormat() {
-        //Given
+        //When
         List<Payment> testPayments = paymentFacade.getPaymentsByDate("sadas");
 
         //Then
@@ -51,7 +51,7 @@ public class PaymentFacadeTest {
 
     @Test
     public void testGetPaymentsByDate() {
-        //Given
+        //When
         List<Payment> testPayments = paymentFacade.getPaymentsByDate("2019-08-15");
 
         //Then

@@ -31,7 +31,6 @@ public class PaymentMapper {
         List<PaymentDto> dtoList = dto.getPayments();
 
         return this.mapToPaymentList(dtoList);
-
     }
 
     public List<Payment> mapToPaymentList(final List<PaymentDto> dtoList) {
