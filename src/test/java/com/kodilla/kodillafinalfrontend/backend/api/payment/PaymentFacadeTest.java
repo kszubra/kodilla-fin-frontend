@@ -1,5 +1,6 @@
 package com.kodilla.kodillafinalfrontend.backend.api.payment;
 
+import com.kodilla.kodillafinalfrontend.Payment;
 import com.kodilla.kodillafinalfrontend.backend.api.payment.domain.dto.PaymentDto;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,7 +23,7 @@ public class PaymentFacadeTest {
     @Test
     public void testGetPaymentById() {
         //When
-        PaymentDto testPayment = paymentFacade.getPayment(5L);
+        Payment testPayment = paymentFacade.getPayment(5L);
 
         //Then
         assertNotNull(testPayment);
@@ -32,7 +33,7 @@ public class PaymentFacadeTest {
     @Test
     public void testGetAllPayments() {
         //When
-        List<PaymentDto> testPayments = paymentFacade.getPayments();
+        List<Payment> testPayments = paymentFacade.getPayments();
 
         //Then
         assertNotNull(testPayments);
@@ -42,7 +43,7 @@ public class PaymentFacadeTest {
     @Test
     public void testGetPaymentsByDateWithWrongFormat() {
         //When
-        List<PaymentDto> testPayments = paymentFacade.getPaymentsByDate("sadas");
+        List<Payment> testPayments = paymentFacade.getPaymentsByDate("sadas");
 
         //Then
         assertNotNull(testPayments);
@@ -52,7 +53,7 @@ public class PaymentFacadeTest {
     @Test
     public void testGetPaymentsByDate() {
         //When
-        List<PaymentDto> testPayments = paymentFacade.getPaymentsByDate("2019-08-15");
+        List<Payment> testPayments = paymentFacade.getPaymentsByDate("2019-08-15");
 
         //Then
         assertNotNull(testPayments);
@@ -62,10 +63,10 @@ public class PaymentFacadeTest {
     @Test
     public void testAddPayment() {
         //Given
-        PaymentDto testPayment = PaymentDto.builder()
+        Payment testPayment = Payment.builder()
                 .status(PaymentStatus.PAID)
                 .paymentDate(LocalDate.now().toString())
-                .value(BigDecimal.valueOf(666.66))
+                .value(BigDecimal.valueOf(666.66).toString())
                 .build();
         Integer response = paymentFacade.addPayment(testPayment);
 
@@ -77,11 +78,11 @@ public class PaymentFacadeTest {
     @Test
     public void testUpdatePayment() {
         //Given
-        PaymentDto testPayment = PaymentDto.builder()
-                .id(19L)
+        Payment testPayment = Payment.builder()
+                .id("19")
                 .status(PaymentStatus.AWAITING)
                 .paymentDate(LocalDate.now().toString())
-                .value(BigDecimal.valueOf(99.66))
+                .value(BigDecimal.valueOf(99.66).toString())
                 .build();
         PaymentDto response = paymentFacade.updatePayment(testPayment);
 

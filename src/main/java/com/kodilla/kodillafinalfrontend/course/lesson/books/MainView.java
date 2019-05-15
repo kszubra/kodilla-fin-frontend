@@ -12,7 +12,7 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.Route;
 
-@Route //@Route określa, pod jakim linkiem będzie widoczny nasz widok. Brak wartości oznacza stronę główną,
+ //@Route określa, pod jakim linkiem będzie widoczny nasz widok. Brak wartości oznacza stronę główną,
 public class MainView extends VerticalLayout {
     private BookService bookService = BookService.getInstance();
     private BookForm form = new BookForm(this);
