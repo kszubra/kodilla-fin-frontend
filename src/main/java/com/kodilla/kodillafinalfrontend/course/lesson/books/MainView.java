@@ -29,7 +29,10 @@ public class MainView extends VerticalLayout {
         grid.setItems(bookService.findByTitle(filter.getValue()));
     }
 
-    public MainView() {
+
+     /**
+      *
+     public MainView() {
         //add( new Button("Click me", e-> Notification.show("Hello World")));
         filter.setPlaceholder("Filter by title...");
         filter.setClearButtonVisible(true);
@@ -53,6 +56,6 @@ public class MainView extends VerticalLayout {
         refresh();
 
         grid.asSingleSelect().addValueChangeListener(event -> form.setBook(grid.asSingleSelect().getValue()));
-    }
+    } */
 
 }
