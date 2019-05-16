@@ -1,7 +1,6 @@
 package com.kodilla.kodillafinalfrontend.backend.api.user;
 
-import com.kodilla.kodillafinalfrontend.backend.api.user.domain.dto.UserDto;
-import com.kodilla.kodillafinalfrontend.backend.api.user.domain.dto.UserRegistrationDto;
+import com.kodilla.kodillafinalfrontend.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,22 +20,22 @@ public class UserFacadeTest {
     @Test
     public void testGetUserById() {
         //Given
-        UserDto testUserDto = userFacade.getUserDtoById(11L);
+        User testUser = userFacade.getUserById(11L);
 
         //Then
-        System.out.println(testUserDto);
+        System.out.println(testUser);
     }
 
     @Test
     public void testRegisterUser() {
         //Given
-        UserRegistrationDto dto = UserRegistrationDto.builder()
+        User user = User.builder()
                 .name("Anakin")
                 .surname("Skywalker")
                 .email("ani@ani.com")
                 .securePassword("1234567890")
                 .build();
-        int result = userFacade.registerUser(dto);
+        int result = userFacade.registerUser(user);
 
         //Then
         assertEquals(200, result);
@@ -45,7 +44,7 @@ public class UserFacadeTest {
     @Test
     public void testGetAllUsers() {
         //Given
-        List<UserDto> userDtos = userFacade.getAllUsers();
+        List<User> userDtos = userFacade.getAllUsers();
 
         //Then
         userDtos.forEach(System.out::println);
@@ -54,12 +53,12 @@ public class UserFacadeTest {
     @Test
     public void testUpdateUser() {
         //Given
-        UserDto testUserDto = userFacade.getUserDtoById(11L);
+        User testUser = userFacade.getUserById(11L);
 
-        testUserDto.setName("Barbarossa");
+        testUser.setName("Barbarossa");
 
         //When
-        UserDto result = userFacade.updateUser(testUserDto);
+        User result = userFacade.updateUser(testUser);
 
         //Then
         assertEquals("Barbarossa", result.getName());
