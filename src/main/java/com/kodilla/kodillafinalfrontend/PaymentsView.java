@@ -39,8 +39,7 @@ public class PaymentsView extends VerticalLayout { // address depends on class n
             Notification.show("Filter text can be only a date in \"YYYY-MM-DD\" format or ID number");
         }
     }
-
-    @Autowired
+    
     public PaymentsView(PaymentFacade paymentFacade) {
         this.paymentFacade = paymentFacade;
         this.grid = new Grid<>(Payment.class);
@@ -49,6 +48,7 @@ public class PaymentsView extends VerticalLayout { // address depends on class n
         filterField.setClearButtonVisible(true);
         filterField.setValueChangeMode(ValueChangeMode.EAGER);
         filterField.addValueChangeListener(e -> refresh(e.getValue()));
+
         add(filterField, grid);
 
         add( new Button("Show all payments", e-> grid.setItems( paymentFacade.getPayments() ) ) );
