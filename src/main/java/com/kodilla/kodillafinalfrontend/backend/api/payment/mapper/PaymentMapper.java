@@ -1,7 +1,6 @@
 package com.kodilla.kodillafinalfrontend.backend.api.payment.mapper;
 
 import com.kodilla.kodillafinalfrontend.Payment;
-import com.kodilla.kodillafinalfrontend.backend.api.payment.PaymentStatus;
 import com.kodilla.kodillafinalfrontend.backend.api.payment.domain.dto.PaymentDto;
 import com.kodilla.kodillafinalfrontend.backend.api.payment.domain.dto.PaymentListDto;
 import lombok.AllArgsConstructor;
@@ -41,10 +40,10 @@ public class PaymentMapper {
 
     public PaymentDto mapToPaymentDto(Payment payment) {
         return PaymentDto.builder()
-                .id( (payment.getId() == null)? null : Long.parseLong(payment.getId()) )
-                .value( BigDecimal.valueOf( Long.parseLong( payment.getValue() ) ) )
+                .id( (payment.getId().equals(""))? null : Long.parseLong(payment.getId()) )
+                .value( BigDecimal.valueOf( Double.parseDouble( payment.getValue() ) ) )
                 .status( payment.getStatus() )
-                .paymentDate( payment.getPaymentDate() )
+                .paymentDate( (payment.getPaymentDate().equals(""))? "UNPAID" : payment.getPaymentDate() )
                 .build();
     }
 

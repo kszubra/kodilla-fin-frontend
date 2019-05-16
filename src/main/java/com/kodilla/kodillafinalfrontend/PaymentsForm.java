@@ -36,13 +36,12 @@ public class PaymentsForm extends FormLayout {
         this.paymentFacade = facade;
         this.paymentsView = view;
         status.setItems(PaymentStatus.values());
-        HorizontalLayout buttons = new HorizontalLayout(save, update);
+        HorizontalLayout buttons = new HorizontalLayout(save);
         save.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         add(id, value, status, paymentDate, buttons);
         binder.bindInstanceFields(this);
 
         save.addClickListener(event -> save());
-        update.addClickListener(event -> update());
     }
 
     public void setPayment(Payment payment) {
@@ -58,18 +57,16 @@ public class PaymentsForm extends FormLayout {
 
     void save() {
         Payment payment = binder.getBean();
-        paymentFacade.addPayment(payment);
+
+        if(payment.getId().equals("")) {
+            paymentFacade.addPayment(payment);
+        } else {
+            paymentFacade.updatePayment(payment);
+        }
+
         paymentsView.refresh("");
         setPayment(null);
     }
-
-    void update() {
-        Payment payment = binder.getBean();
-        paymentFacade.updatePayment(payment);
-        paymentsView.refresh("");
-        setPayment(null);
-    }
-
 
 }
 
