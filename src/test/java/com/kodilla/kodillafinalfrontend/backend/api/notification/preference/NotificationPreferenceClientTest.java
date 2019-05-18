@@ -35,7 +35,7 @@ public class NotificationPreferenceClientTest {
     public void testAddPreference() {
         //Given & When
         NotificationPreference preferenceToAdd = NotificationPreference.builder()
-                .userId("27")
+                .userId("26")
                 .minTemperature("15")
                 .maxPrice("700")
                 .departureCity("Warsaw")
@@ -59,7 +59,7 @@ public class NotificationPreferenceClientTest {
         NotificationPreference result = preferenceFacade.updatePreference(updating);
 
         //Then
-        assertEquals("900", result.getMaxPrice());
+        assertEquals("900.00", result.getMaxPrice());
     }
 
     @Test

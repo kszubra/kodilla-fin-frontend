@@ -49,7 +49,7 @@ public class NotificationPreferenceMapper {
                 .destinationCity( preference.getDestinationCity() )
                 .minTemperature( Integer.parseInt( preference.getMinTemperature() ) )
                 .maxPrice( BigDecimal.valueOf( Double.parseDouble( preference.getMaxPrice() ) ) )
-                .userDto( userClient.getUserById( Long.parseLong( preference.getId() ) ) )
+                .userDto( userClient.getUserById( Long.parseLong( preference.getUserId() ) ) )
                 .build();
     }
 

@@ -20,11 +20,12 @@ public class NotificationPreference {
     @Override
     public String toString() {
         return "NotificationPreference{" +
-                "id=" + id +
+                "id='" + id + '\'' +
+                ", userId='" + userId + '\'' +
                 ", departureCity='" + departureCity + '\'' +
                 ", destinationCity='" + destinationCity + '\'' +
-                ", minTemperature=" + minTemperature +
-                ", maxPrice=" + maxPrice +
+                ", minTemperature='" + minTemperature + '\'' +
+                ", maxPrice='" + maxPrice + '\'' +
                 '}';
     }
 
