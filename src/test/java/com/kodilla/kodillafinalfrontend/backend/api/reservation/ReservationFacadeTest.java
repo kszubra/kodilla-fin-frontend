@@ -1,5 +1,6 @@
 package com.kodilla.kodillafinalfrontend.backend.api.reservation;
 
+import com.kodilla.kodillafinalfrontend.Reservation;
 import com.kodilla.kodillafinalfrontend.backend.api.payment.PaymentStatus;
 import com.kodilla.kodillafinalfrontend.backend.api.payment.domain.dto.PaymentDto;
 import com.kodilla.kodillafinalfrontend.backend.api.reservation.domain.dto.ReservationCreationDto;
@@ -24,7 +25,7 @@ public class ReservationFacadeTest {
     @Test
     public void testGetReservation() {
         //When
-        ReservationDto testReservation = reservationFacade.getReservationById(4L);
+        Reservation testReservation = reservationFacade.getReservationById(4L);
 
         //Then
         System.out.println(testReservation);
@@ -33,7 +34,7 @@ public class ReservationFacadeTest {
     @Test
     public void testGetAllReservations() {
         //When
-        List<ReservationDto> testReservations = reservationFacade.getAllReservations();
+        List<Reservation> testReservations = reservationFacade.getAllReservations();
 
         //Then
         testReservations.forEach(System.out::println);
@@ -42,7 +43,7 @@ public class ReservationFacadeTest {
     @Test
     public void testGetReservationsBySurname() {
         //When
-        List<ReservationDto> testReservations = reservationFacade.getReservationBySurname("seed");
+        List<Reservation> testReservations = reservationFacade.getReservationBySurname("seed");
 
         //Then
         testReservations.forEach(System.out::println);
@@ -51,7 +52,7 @@ public class ReservationFacadeTest {
     @Test
     public void testAddReservation() {
         //Given
-        ReservationCreationDto creationDto = ReservationCreationDto.builder()
+        Reservation reservation = Reservation.builder()
                 .returnFlightDate("2019-04-15")
                 .thereFlightDate("2019-08-20")
                 .thereFlightDepartureCity( "Warsaw" )
@@ -65,11 +66,11 @@ public class ReservationFacadeTest {
                 .name( "John" )
                 .surname( "Rambo" )
                 .email( "rambo@rambo.com" )
-                .price(BigDecimal.valueOf(555,66))
+                .price(BigDecimal.valueOf(555,66).toString())
                 .build();
 
         //When
-        int result = reservationFacade.addReservation( creationDto );
+        int result = reservationFacade.addReservation( reservation );
 
         //Then
         assertEquals(200, result);
@@ -78,36 +79,14 @@ public class ReservationFacadeTest {
     @Test
     public void testUpdatingReservation() {
         //Given
-        PaymentDto paymentDto = PaymentDto.builder()
-                .id(20L)
-                .status(PaymentStatus.AWAITING)
-                .paymentDate("UNPAID")
-                .value( BigDecimal.valueOf(250.55) )
-                .build();
-
-        ReservationDto dto = ReservationDto.builder()
-                .id(21L)
-                .returnFlightDate("2019-04-15")
-                .thereFlightDate("2019-08-20")
-                .thereFlightDepartureCity( "Warsaw" )
-                .thereFlightDepartureAirportCode( "WAW" )
-                .thereFlightDestinationCity( "Hanover" )
-                .thereFlightDestinationAirportCode( "HAJ" )
-                .returnFlightDepartureCity( "Hanover" )
-                .returnFlightDepartureAirportCode( "HAJ" )
-                .returnFlightDestinationCity( "Warsaw" )
-                .returnFlightDestinationAirportCode( "WAW" )
-                .name( "John JOHN" )
-                .surname( "Rambo EDITED" )
-                .email( "rambo@rambo.com" )
-                .price(BigDecimal.valueOf(555,66))
-                .paymentDto(paymentDto)
-                .build();
+        Reservation reservationToUpdate = reservationFacade.getReservationById(6L);
+        reservationToUpdate.setEmail("newemail@email.com");
 
         //When
-        ReservationDto result = reservationFacade.updateReservation(dto);
+        Reservation result = reservationFacade.updateReservation(reservationToUpdate);
 
         //Then
+        assertEquals("newemail@email.com", result.getEmail());
         System.out.println(result);;
     }
 
@@ -120,7 +99,7 @@ public class ReservationFacadeTest {
     @Test
     public void testCountingReservationsInCity() {
         //Given
-        ReservationCreationDto creationDto = ReservationCreationDto.builder()
+        Reservation reservation = Reservation.builder()
                 .returnFlightDate("2019-04-15")
                 .thereFlightDate("2019-08-20")
                 .thereFlightDepartureCity( "Warsaw" )
@@ -134,9 +113,9 @@ public class ReservationFacadeTest {
                 .name( "John" )
                 .surname( "Rambo" )
                 .email( "rambo@rambo.com" )
-                .price(BigDecimal.valueOf(555,66))
+                .price(BigDecimal.valueOf(555,66).toString())
                 .build();
-        reservationFacade.addReservation( creationDto );
+        reservationFacade.addReservation( reservation );
 
         //when
         int result = reservationFacade.countReservationsInCity("Hanover");
