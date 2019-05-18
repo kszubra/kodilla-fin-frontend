@@ -1,6 +1,6 @@
 package com.kodilla.kodillafinalfrontend.backend.api.payment;
 
-import com.kodilla.kodillafinalfrontend.Payment;
+import com.kodilla.kodillafinalfrontend.domain.Payment;
 import com.kodilla.kodillafinalfrontend.backend.api.payment.domain.dto.PaymentDto;
 import org.junit.Test;
 import org.junit.runner.RunWith;

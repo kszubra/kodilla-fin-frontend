@@ -1,6 +1,6 @@
 package com.kodilla.kodillafinalfrontend.backend.api.payment.mapper;
 
-import com.kodilla.kodillafinalfrontend.Payment;
+import com.kodilla.kodillafinalfrontend.domain.Payment;
 import com.kodilla.kodillafinalfrontend.backend.api.payment.domain.dto.PaymentDto;
 import com.kodilla.kodillafinalfrontend.backend.api.payment.domain.dto.PaymentListDto;
 import lombok.AllArgsConstructor;

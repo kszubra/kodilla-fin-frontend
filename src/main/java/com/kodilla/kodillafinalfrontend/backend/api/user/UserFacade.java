@@ -1,6 +1,6 @@
 package com.kodilla.kodillafinalfrontend.backend.api.user;
 
-import com.kodilla.kodillafinalfrontend.User;
+import com.kodilla.kodillafinalfrontend.domain.User;
 import com.kodilla.kodillafinalfrontend.backend.api.user.mapper.UserMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;

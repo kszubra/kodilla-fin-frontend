@@ -1,17 +1,12 @@
 package com.kodilla.kodillafinalfrontend.backend.api.notification.preference;
 
-import com.kodilla.kodillafinalfrontend.NotificationPreference;
-import com.kodilla.kodillafinalfrontend.backend.api.notification.preference.domain.dto.NotificationPreferenceCreationDto;
-import com.kodilla.kodillafinalfrontend.backend.api.notification.preference.domain.dto.NotificationPreferenceDto;
-import org.junit.Ignore;
+import com.kodilla.kodillafinalfrontend.domain.NotificationPreference;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.List;
 
 import static org.junit.Assert.*;

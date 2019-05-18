@@ -1,6 +1,6 @@
 package com.kodilla.kodillafinalfrontend.backend.api.user;
 
-import com.kodilla.kodillafinalfrontend.User;
+import com.kodilla.kodillafinalfrontend.domain.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

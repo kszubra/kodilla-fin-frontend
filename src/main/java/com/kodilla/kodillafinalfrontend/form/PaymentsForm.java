@@ -1,8 +1,10 @@
-package com.kodilla.kodillafinalfrontend;
+package com.kodilla.kodillafinalfrontend.form;
 
 
 import com.kodilla.kodillafinalfrontend.backend.api.payment.PaymentFacade;
 import com.kodilla.kodillafinalfrontend.backend.api.payment.PaymentStatus;
+import com.kodilla.kodillafinalfrontend.domain.Payment;
+import com.kodilla.kodillafinalfrontend.view.PaymentsView;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.combobox.ComboBox;

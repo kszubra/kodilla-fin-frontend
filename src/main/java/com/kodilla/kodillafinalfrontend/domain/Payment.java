@@ -1,4 +1,4 @@
-package com.kodilla.kodillafinalfrontend;
+package com.kodilla.kodillafinalfrontend.domain;
 
 import com.kodilla.kodillafinalfrontend.backend.api.payment.PaymentStatus;
 import lombok.*;

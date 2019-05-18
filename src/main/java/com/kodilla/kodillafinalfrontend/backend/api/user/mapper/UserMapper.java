@@ -1,6 +1,6 @@
 package com.kodilla.kodillafinalfrontend.backend.api.user.mapper;
 
-import com.kodilla.kodillafinalfrontend.User;
+import com.kodilla.kodillafinalfrontend.domain.User;
 import com.kodilla.kodillafinalfrontend.backend.api.user.domain.dto.UserDto;
 import com.kodilla.kodillafinalfrontend.backend.api.user.domain.dto.UserListDto;
 import com.kodilla.kodillafinalfrontend.backend.api.user.domain.dto.UserRegistrationDto;

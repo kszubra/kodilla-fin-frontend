@@ -1,6 +1,8 @@
-package com.kodilla.kodillafinalfrontend;
+package com.kodilla.kodillafinalfrontend.view;
 
+import com.kodilla.kodillafinalfrontend.form.PaymentsForm;
 import com.kodilla.kodillafinalfrontend.backend.api.payment.PaymentFacade;
+import com.kodilla.kodillafinalfrontend.domain.Payment;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.notification.Notification;

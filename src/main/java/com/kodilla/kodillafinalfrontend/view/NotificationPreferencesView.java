@@ -1,6 +1,8 @@
-package com.kodilla.kodillafinalfrontend;
+package com.kodilla.kodillafinalfrontend.view;
 
+import com.kodilla.kodillafinalfrontend.form.NotificationPreferencesForm;
 import com.kodilla.kodillafinalfrontend.backend.api.notification.preference.NotificationPreferenceFacade;
+import com.kodilla.kodillafinalfrontend.domain.NotificationPreference;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;

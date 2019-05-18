@@ -1,6 +1,8 @@
-package com.kodilla.kodillafinalfrontend;
+package com.kodilla.kodillafinalfrontend.view;
 
+import com.kodilla.kodillafinalfrontend.form.UsersForm;
 import com.kodilla.kodillafinalfrontend.backend.api.user.UserFacade;
+import com.kodilla.kodillafinalfrontend.domain.User;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.notification.Notification;

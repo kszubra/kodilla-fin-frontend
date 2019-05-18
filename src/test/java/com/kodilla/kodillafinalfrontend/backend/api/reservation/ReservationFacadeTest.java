@@ -1,10 +1,6 @@
 package com.kodilla.kodillafinalfrontend.backend.api.reservation;
 
-import com.kodilla.kodillafinalfrontend.Reservation;
-import com.kodilla.kodillafinalfrontend.backend.api.payment.PaymentStatus;
-import com.kodilla.kodillafinalfrontend.backend.api.payment.domain.dto.PaymentDto;
-import com.kodilla.kodillafinalfrontend.backend.api.reservation.domain.dto.ReservationCreationDto;
-import com.kodilla.kodillafinalfrontend.backend.api.reservation.domain.dto.ReservationDto;
+import com.kodilla.kodillafinalfrontend.domain.Reservation;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,8 +1,6 @@
 package com.kodilla.kodillafinalfrontend.backend.api.reservation;
 
-import com.kodilla.kodillafinalfrontend.Reservation;
-import com.kodilla.kodillafinalfrontend.backend.api.reservation.domain.dto.ReservationCreationDto;
-import com.kodilla.kodillafinalfrontend.backend.api.reservation.domain.dto.ReservationDto;
+import com.kodilla.kodillafinalfrontend.domain.Reservation;
 import com.kodilla.kodillafinalfrontend.backend.api.reservation.mapper.ReservationMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;

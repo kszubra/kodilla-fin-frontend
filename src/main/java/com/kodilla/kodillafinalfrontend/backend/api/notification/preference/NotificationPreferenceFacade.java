@@ -1,6 +1,6 @@
 package com.kodilla.kodillafinalfrontend.backend.api.notification.preference;
 
-import com.kodilla.kodillafinalfrontend.NotificationPreference;
+import com.kodilla.kodillafinalfrontend.domain.NotificationPreference;
 
 import com.kodilla.kodillafinalfrontend.backend.api.notification.preference.mapper.NotificationPreferenceMapper;
 import lombok.AllArgsConstructor;

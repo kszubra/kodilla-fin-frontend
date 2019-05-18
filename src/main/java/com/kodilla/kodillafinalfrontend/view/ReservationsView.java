@@ -1,6 +1,8 @@
-package com.kodilla.kodillafinalfrontend;
+package com.kodilla.kodillafinalfrontend.view;
 
+import com.kodilla.kodillafinalfrontend.form.ReservationsForm;
 import com.kodilla.kodillafinalfrontend.backend.api.reservation.ReservationFacade;
+import com.kodilla.kodillafinalfrontend.domain.Reservation;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
