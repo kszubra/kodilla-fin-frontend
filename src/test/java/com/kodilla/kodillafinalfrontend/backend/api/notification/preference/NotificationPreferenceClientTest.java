@@ -1,5 +1,6 @@
 package com.kodilla.kodillafinalfrontend.backend.api.notification.preference;
 
+import com.kodilla.kodillafinalfrontend.NotificationPreference;
 import com.kodilla.kodillafinalfrontend.backend.api.notification.preference.domain.dto.NotificationPreferenceCreationDto;
 import com.kodilla.kodillafinalfrontend.backend.api.notification.preference.domain.dto.NotificationPreferenceDto;
 import org.junit.Ignore;
@@ -24,7 +25,7 @@ public class NotificationPreferenceClientTest {
     @Test
     public void testGetPreferenceById() {
         //Given & When
-        NotificationPreferenceDto testPreference = preferenceFacade.getPreferenceById(12L);
+        NotificationPreference testPreference = preferenceFacade.getPreferenceById(12L);
 
         //Then
         System.out.println(testPreference);
@@ -33,16 +34,16 @@ public class NotificationPreferenceClientTest {
     @Test
     public void testAddPreference() {
         //Given & When
-        NotificationPreferenceCreationDto creationDto = NotificationPreferenceCreationDto.builder()
-                .userId(26L)
-                .minTemperature(15)
-                .maxPrice(BigDecimal.valueOf(700))
-                .departureCity("Wrocław")
+        NotificationPreference preferenceToAdd = NotificationPreference.builder()
+                .userId("27")
+                .minTemperature("15")
+                .maxPrice("700")
+                .departureCity("Warsaw")
                 .destinationCity("Paris")
                 .build();
 
         //When
-        int result = preferenceFacade.addPreference(creationDto);
+        int result = preferenceFacade.addPreference(preferenceToAdd);
 
         //Then
         assertEquals(200, result);
@@ -51,20 +52,20 @@ public class NotificationPreferenceClientTest {
     @Test
     public void testUpdatingPreference() {
         //Given & When
-        NotificationPreferenceDto updatingDto = preferenceFacade.getPreferenceById(27L);
-        updatingDto.setMaxPrice(BigDecimal.valueOf(900));
+        NotificationPreference updating = preferenceFacade.getPreferenceById(27L);
+        updating.setMaxPrice("900");
 
         //When
-        NotificationPreferenceDto result = preferenceFacade.updatePreference(updatingDto);
+        NotificationPreference result = preferenceFacade.updatePreference(updating);
 
         //Then
-        assertEquals(BigDecimal.valueOf(900).setScale(2, RoundingMode.HALF_EVEN), result.getMaxPrice().setScale(2, RoundingMode.HALF_EVEN));
+        assertEquals("900", result.getMaxPrice());
     }
 
     @Test
     public void testGettingAllPreference() {
         //Given & When
-        List<NotificationPreferenceDto> preferences = preferenceFacade.getAllPreferences();
+        List<NotificationPreference> preferences = preferenceFacade.getAllPreferences();
 
         //Then
         preferences.forEach(System.out::println);
@@ -73,7 +74,7 @@ public class NotificationPreferenceClientTest {
     @Test
     public void testGettingPreferencesByCity() {
         //Given & When
-        List<NotificationPreferenceDto> preferences = preferenceFacade.getPreferencesByDestinationCity("Paris");
+        List<NotificationPreference> preferences = preferenceFacade.getPreferencesByDestinationCity("Paris");
 
         //Then
         preferences.forEach(System.out::println);

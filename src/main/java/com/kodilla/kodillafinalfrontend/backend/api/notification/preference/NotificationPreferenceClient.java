@@ -40,7 +40,7 @@ public class NotificationPreferenceClient {
         }
     }
 
-    public Integer addPayment(final NotificationPreferenceCreationDto dto){
+    public Integer addPreference(final NotificationPreferenceCreationDto dto){
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
