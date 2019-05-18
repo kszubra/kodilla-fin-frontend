@@ -13,12 +13,10 @@ import com.vaadin.flow.spring.annotation.UIScope;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
-import java.util.regex.Pattern;
-
 @Component
 @UIScope
 @Route()
-public class UsersView extends VerticalLayout { // address depends on class name, with  "PaymentView" address was http://localhost:8081/payment
+public class UsersView extends VerticalLayout {
     private final UserFacade userFacade;
     private UsersForm usersForm;
     private Grid<User> grid;
@@ -67,9 +65,4 @@ public class UsersView extends VerticalLayout { // address depends on class name
         grid.asSingleSelect().addValueChangeListener(event -> usersForm.setUser(grid.asSingleSelect().getValue()));
 
     }
-
-
-
-
-
 }

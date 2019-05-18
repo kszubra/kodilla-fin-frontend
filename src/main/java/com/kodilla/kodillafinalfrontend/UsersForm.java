@@ -3,7 +3,6 @@ package com.kodilla.kodillafinalfrontend;
 import com.kodilla.kodillafinalfrontend.backend.api.user.UserFacade;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
-import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
