@@ -29,17 +29,19 @@ public class NotificationPreferencesForm extends FormLayout {
     private Binder<NotificationPreference> binder = new Binder<>(NotificationPreference.class);
 
     Button save = new Button("Save", VaadinIcon.CHECK.create());
+    Button delete = new Button("Delete", VaadinIcon.CHECK.create());
 
     @Autowired
     public NotificationPreferencesForm(NotificationPreferenceFacade facade, NotificationPreferencesView view) {
         this.preferencesFacade = facade;
         this.preferencesView = view;
-        HorizontalLayout buttons = new HorizontalLayout(save);
+        HorizontalLayout buttons = new HorizontalLayout(save, delete);
         save.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         add(id, userId, departureCity,destinationCity, minTemperature, maxPrice, buttons);
         binder.bindInstanceFields(this);
 
         save.addClickListener(event -> save());
+        delete.addClickListener(event -> delete());
     }
 
     public void setPreference(NotificationPreference preference) {
@@ -62,6 +64,16 @@ public class NotificationPreferencesForm extends FormLayout {
             preferencesFacade.updatePreference(preference);
         }
 
+        preferencesView.refresh("");
+        setPreference(null);
+    }
+
+    void delete() {
+        NotificationPreference preference = binder.getBean();
+
+        if(preference.getId().chars().allMatch(Character::isDigit)) {
+            preferencesFacade.deletePreference( Long.parseLong( preference.getId() ) );
+        }
         preferencesView.refresh("");
         setPreference(null);
     }

@@ -31,17 +31,19 @@ public class UsersForm extends FormLayout {
     private Binder<User> binder = new Binder<>(User.class);
 
     Button save = new Button("Save", VaadinIcon.CHECK.create());
+    Button delete = new Button("Delete", VaadinIcon.CHECK.create());
 
     @Autowired
     public UsersForm(UserFacade facade, UsersView view) {
         this.userFacade = facade;
         this.usersView = view;
-        HorizontalLayout buttons = new HorizontalLayout(save);
+        HorizontalLayout buttons = new HorizontalLayout(save, delete);
         save.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         add(id, name, surname, email, securePassword, registered, notificationsId, buttons);
         binder.bindInstanceFields(this);
 
         save.addClickListener(event -> save());
+        delete.addClickListener(event -> delete());
     }
 
     public void setUser(User user) {
@@ -64,6 +66,16 @@ public class UsersForm extends FormLayout {
             userFacade.updateUser(user);
         }
 
+        usersView.refresh("");
+        setUser(null);
+    }
+
+    void delete() {
+        User user = binder.getBean();
+
+        if(user.getId().chars().allMatch(Character::isDigit)) {
+            userFacade.deleteUser( Long.parseLong( user.getId() ) );
+        }
         usersView.refresh("");
         setUser(null);
     }

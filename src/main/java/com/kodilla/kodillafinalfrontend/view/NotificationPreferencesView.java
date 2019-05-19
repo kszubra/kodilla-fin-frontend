@@ -44,8 +44,8 @@ public class NotificationPreferencesView extends VerticalLayout { // address dep
         this.addNewPreference = new Button("Add new Preference");
 
         addNewPreference.addClickListener(e -> {
-            grid.asSingleSelect().clear(); //"czyścimy" zaznaczenie
-            preferencesForm.setPreference(new NotificationPreference()); //dodajemy nowy obiekt do formularza
+            grid.asSingleSelect().clear();
+            preferencesForm.setPreference(new NotificationPreference());
         });
 
         preferencesForm.setPreference(null);
