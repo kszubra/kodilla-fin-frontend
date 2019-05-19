@@ -43,12 +43,13 @@ public class ReservationsForm extends FormLayout {
     private Binder<Reservation> binder = new Binder<>(Reservation.class);
 
     Button save = new Button("Save", VaadinIcon.CHECK.create());
+    Button delete = new Button("Delete", VaadinIcon.CHECK.create());
 
     @Autowired
     public ReservationsForm(ReservationFacade facade, ReservationsView view) {
         this.reservationFacade = facade;
         this.reservationsView = view;
-        HorizontalLayout buttons = new HorizontalLayout(save);
+        HorizontalLayout buttons = new HorizontalLayout(save, delete);
         save.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         add(
                 id, name, surname, email, price, paymentId,
@@ -59,6 +60,7 @@ public class ReservationsForm extends FormLayout {
         binder.bindInstanceFields(this);
 
         save.addClickListener(event -> save());
+        delete.addClickListener(event -> delete());
     }
 
     public void setReservation(Reservation reservation) {
@@ -81,6 +83,16 @@ public class ReservationsForm extends FormLayout {
             reservationFacade.updateReservation(reservation);
         }
 
+        reservationsView.refresh("");
+        setReservation(null);
+    }
+
+    void delete() {
+        Reservation reservation = binder.getBean();
+
+        if(reservation.getId().chars().allMatch(Character::isDigit)) {
+            reservationFacade.deleteReservation( Long.parseLong( reservation.getId() ) );
+        }
         reservationsView.refresh("");
         setReservation(null);
     }
