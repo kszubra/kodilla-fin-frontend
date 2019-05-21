@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
 @Builder(toBuilder = true)
 public class Payment {
 
-    private String id;
+    private String id = "";
     private PaymentStatus status;
     private String value;
     private String paymentDate;
@@ -27,8 +27,9 @@ public class Payment {
     }
 
     private boolean alwaysRequiredFieldsAreFilled() {
+        Pattern pricePattern = Pattern.compile("[0-9]+([.][0-9]{1,2})?");
         return !( status == null |
-                    value.isEmpty() |
+                    !pricePattern.matcher(value).matches() |
                     paymentDate.isEmpty() );
     }
 

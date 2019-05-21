@@ -25,14 +25,12 @@ public class PaymentsForm extends FormLayout {
     private final PaymentFacade paymentFacade;
     private PaymentsView paymentsView;
 
-    private TextField id = new TextField("id");
     private TextField value = new TextField("value");
     private TextField paymentDate = new TextField("Payment date");
     private ComboBox<PaymentStatus> status = new ComboBox<>("Payment status");
     private Binder<Payment> binder = new Binder<>(Payment.class);
 
     Button save = new Button("Save", VaadinIcon.CHECK.create());
-    Button update = new Button("Update");
 
     @Autowired
     public PaymentsForm(PaymentFacade facade, PaymentsView view) {
@@ -41,7 +39,7 @@ public class PaymentsForm extends FormLayout {
         status.setItems(PaymentStatus.values());
         HorizontalLayout buttons = new HorizontalLayout(save);
         save.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
-        add(id, value, status, paymentDate, buttons);
+        add(value, status, paymentDate, buttons);
         binder.bindInstanceFields(this);
 
         save.addClickListener(event -> save());
@@ -54,7 +52,7 @@ public class PaymentsForm extends FormLayout {
             setVisible(false);
         } else {
             setVisible(true);
-            id.focus();
+            value.focus();
         }
     }
 

@@ -2,6 +2,7 @@ package com.kodilla.kodillafinalfrontend.domain;
 
 import lombok.*;
 import java.util.Objects;
+import java.util.regex.Pattern;
 
 @Getter
 @Setter
@@ -10,7 +11,7 @@ import java.util.Objects;
 @Builder(toBuilder = true)
 public class NotificationPreference {
 
-    private String id;
+    private String id = "";
     private String userId;
     private String departureCity;
     private String destinationCity;
@@ -18,19 +19,24 @@ public class NotificationPreference {
     private String maxPrice;
 
     public boolean isSafeToUpdate() {
-        return !id.isEmpty() && this.alwaysRequiredFieldsAreFilled();
+        return id.chars().allMatch(Character::isDigit) && this.alwaysRequiredFieldsAreFilled();
     }
 
-    public boolean isSafeToSave() {
-        return id.isEmpty() && this.alwaysRequiredFieldsAreFilled();
-    }
+        public boolean isSafeToSave() {
+            return id.isEmpty() && this.alwaysRequiredFieldsAreFilled();
+        }
 
-    private boolean alwaysRequiredFieldsAreFilled() {
-        return !( userId.isEmpty() |
+        private boolean alwaysRequiredFieldsAreFilled() {
+            Pattern pricePattern = Pattern.compile("[0-9]+([.][0-9]{1,2})?");
+            return !( userId.isEmpty() |
+                    !userId.chars().allMatch(Character::isDigit) |
                     departureCity.isEmpty() |
                     destinationCity.isEmpty() |
                     minTemperature.isEmpty() |
-                    maxPrice.isEmpty() );
+                    !minTemperature.chars().allMatch(Character::isDigit) |
+                    !pricePattern.matcher(maxPrice).matches()
+
+        );
     }
 
     @Override

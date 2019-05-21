@@ -3,6 +3,7 @@ package com.kodilla.kodillafinalfrontend.domain;
 import lombok.*;
 
 import java.util.Objects;
+import java.util.regex.Pattern;
 
 @Getter
 @Setter
@@ -11,8 +12,8 @@ import java.util.Objects;
 @Builder(toBuilder = true)
 public class Reservation {
 
-    private String id;
-    private String paymentId;
+    private String id = "";
+    private String paymentId = "";
     private String thereFlightDepartureCity;
     private String thereFlightDepartureAirportCode;
     private String thereFlightDestinationCity;
@@ -43,20 +44,23 @@ public class Reservation {
     }
 
     private boolean alwaysRequiredFieldsAreFilled() {
+        Pattern emailPattern = Pattern.compile(".{3,}@.{2,}\\..{2,3}");
+        Pattern datePattern = Pattern.compile("^((19|2[0-9])[0-9]{2})-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$");
+        Pattern pricePattern = Pattern.compile("[0-9]+([.][0-9]{1,2})?");
         return !( thereFlightDepartureCity.isEmpty() |
                     thereFlightDepartureAirportCode.isEmpty() |
                     thereFlightDestinationCity.isEmpty() |
                     thereFlightDestinationAirportCode.isEmpty() |
-                    thereFlightDate.isEmpty() |
+                    !datePattern.matcher(thereFlightDate).matches() |
                     returnFlightDepartureCity.isEmpty() |
                     returnFlightDepartureAirportCode.isEmpty() |
                     returnFlightDestinationCity.isEmpty() |
                     returnFlightDestinationAirportCode.isEmpty() |
-                    returnFlightDate.isEmpty() |
+                    !datePattern.matcher(returnFlightDate).matches() |
                     name.isEmpty() |
                     surname.isEmpty() |
-                    email.isEmpty() |
-                    price.isEmpty() );
+                    !emailPattern.matcher(email).matches() |
+                    !pricePattern.matcher(price).matches()  );
     }
 
     @Override

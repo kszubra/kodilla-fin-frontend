@@ -21,12 +21,10 @@ public class UsersForm extends FormLayout {
     private final UserFacade userFacade;
     private UsersView usersView;
 
-    private TextField id = new TextField("id");
     private TextField name = new TextField("name");
     private TextField surname = new TextField("surname");
     private TextField email = new TextField("email");
     private TextField securePassword = new TextField("password");
-    private TextField registered = new TextField("registered");
     private TextField notificationsId = new TextField("notifications");
 
     private Binder<User> binder = new Binder<>(User.class);
@@ -40,7 +38,7 @@ public class UsersForm extends FormLayout {
         this.usersView = view;
         HorizontalLayout buttons = new HorizontalLayout(save, delete);
         save.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
-        add(id, name, surname, email, securePassword, registered, notificationsId, buttons);
+        add(name, surname, email, securePassword, notificationsId, buttons);
         binder.bindInstanceFields(this);
 
         save.addClickListener(event -> save());
@@ -54,7 +52,7 @@ public class UsersForm extends FormLayout {
             setVisible(false);
         } else {
             setVisible(true);
-            id.focus();
+            name.focus();
         }
     }
 

@@ -21,7 +21,6 @@ public class NotificationPreferencesForm extends FormLayout {
     private final NotificationPreferenceFacade preferencesFacade;
     private NotificationPreferencesView preferencesView;
 
-    private TextField id = new TextField("id");
     private TextField userId = new TextField("userId");
     private TextField departureCity = new TextField("departureCity");
     private TextField destinationCity = new TextField("destinationCity");
@@ -38,7 +37,7 @@ public class NotificationPreferencesForm extends FormLayout {
         this.preferencesView = view;
         HorizontalLayout buttons = new HorizontalLayout(save, delete);
         save.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
-        add(id, userId, departureCity,destinationCity, minTemperature, maxPrice, buttons);
+        add(userId, departureCity,destinationCity, minTemperature, maxPrice, buttons);
         binder.bindInstanceFields(this);
 
         save.addClickListener(event -> save());
@@ -52,7 +51,7 @@ public class NotificationPreferencesForm extends FormLayout {
             setVisible(false);
         } else {
             setVisible(true);
-            id.focus();
+            userId.focus();
         }
     }
 

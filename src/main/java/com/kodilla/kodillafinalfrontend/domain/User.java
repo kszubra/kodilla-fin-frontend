@@ -3,6 +3,8 @@ package com.kodilla.kodillafinalfrontend.domain;
 import lombok.*;
 
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Getter
 @Setter
@@ -11,7 +13,7 @@ import java.util.Set;
 @Builder(toBuilder = true)
 public class User {
 
-    private String id;
+    private String id = "";
     private String name;
     private String surname;
     private String email;
@@ -32,9 +34,10 @@ public class User {
     }
 
     private boolean alwaysRequiredFieldsAreFilled() {
+        Pattern emailPattern = Pattern.compile(".{3,}@.{2,}\\..{2,3}");
         return !( name.isEmpty() |
                     surname.isEmpty() |
-                    email.isEmpty() |
+                    !emailPattern.matcher(email).matches() |
                     securePassword.isEmpty()
                 );
     }

@@ -21,12 +21,10 @@ public class ReservationsForm extends FormLayout {
     private final ReservationFacade reservationFacade;
     private ReservationsView reservationsView;
 
-    private TextField id = new TextField("id");
     private TextField name = new TextField("name");
     private TextField surname = new TextField("surname");
     private TextField email = new TextField("email");
     private TextField price = new TextField("price");
-    private TextField paymentId = new TextField("paymentId");
 
     private TextField thereFlightDepartureCity = new TextField("thereFlightDepartureCity");
     private TextField thereFlightDepartureAirportCode = new TextField("thereFlightDepartureAirportCode");
@@ -53,7 +51,7 @@ public class ReservationsForm extends FormLayout {
         HorizontalLayout buttons = new HorizontalLayout(save, delete);
         save.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         add(
-                id, name, surname, email, price, paymentId,
+                name, surname, email, price,
                 thereFlightDepartureCity, thereFlightDepartureAirportCode, thereFlightDestinationCity, thereFlightDestinationAirportCode,
                 thereFlightDate, returnFlightDepartureCity, returnFlightDepartureAirportCode, returnFlightDestinationCity,
                 returnFlightDestinationAirportCode, returnFlightDate, buttons
@@ -71,7 +69,7 @@ public class ReservationsForm extends FormLayout {
             setVisible(false);
         } else {
             setVisible(true);
-            id.focus();
+            name.focus();
         }
     }
 
