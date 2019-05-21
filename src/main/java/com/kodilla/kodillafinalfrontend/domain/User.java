@@ -2,6 +2,7 @@ package com.kodilla.kodillafinalfrontend.domain;
 
 import lombok.*;
 
+import java.util.HashSet;
 import java.util.Set;
 import java.util.regex.Pattern;
 
@@ -18,7 +19,7 @@ public class User {
     private String email;
     private String securePassword;
     private String registered;
-    private Set<String> notificationIds;
+    private Set<String> notificationIds = new HashSet<String>();
 
     public boolean isSafeToUpdate() {
         return !id.isEmpty() &&
