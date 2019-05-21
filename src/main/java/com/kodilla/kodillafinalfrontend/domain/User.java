@@ -18,7 +18,7 @@ public class User {
     private String surname;
     private String email;
     private String securePassword;
-    private String registered;
+    private String registered = "";
     private Set<String> notificationIds = new HashSet<String>();
 
     public boolean isSafeToUpdate() {
@@ -38,7 +38,7 @@ public class User {
         return !( name.isEmpty() |
                     surname.isEmpty() |
                     !emailPattern.matcher(email).matches() |
-                    securePassword.isEmpty()
+                    securePassword.length()<10
                 );
     }
 
