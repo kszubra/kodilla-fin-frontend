@@ -28,7 +28,6 @@ public class User {
     public boolean isSafeToSave() {
         return id.isEmpty() &&
                 registered.isEmpty() &&
-                notificationIds.size() == 0 &&
                 this.alwaysRequiredFieldsAreFilled();
     }
 
