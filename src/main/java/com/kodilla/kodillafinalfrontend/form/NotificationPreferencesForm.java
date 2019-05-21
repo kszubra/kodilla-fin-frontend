@@ -7,6 +7,7 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.icon.VaadinIcon;
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.Binder;
@@ -58,10 +59,12 @@ public class NotificationPreferencesForm extends FormLayout {
     void save() {
         NotificationPreference preference = binder.getBean();
 
-        if(preference.getId().equals("")) {
+        if( preference.isSafeToSave() && preference.getId().equals("") ) {
             preferencesFacade.addPreference(preference);
-        } else {
+        } else if(preference.isSafeToUpdate()) {
             preferencesFacade.updatePreference(preference);
+        } else {
+            Notification.show("Fields are not filled properly!");
         }
 
         preferencesView.refresh("");

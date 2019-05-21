@@ -18,6 +18,16 @@ public class Payment {
     private String value;
     private String paymentDate;
 
+    public boolean isSafeToUpdate() {
+        return id != null && this.isSafeToSave();
+    }
+
+    public boolean isSafeToSave() {
+        return status != null &&
+                value != null &&
+                paymentDate != null;
+    }
+
     @Override
     public String toString() {
         return "PaymentDto{" +

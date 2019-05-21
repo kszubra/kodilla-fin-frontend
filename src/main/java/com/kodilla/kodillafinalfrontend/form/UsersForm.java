@@ -7,6 +7,7 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.icon.VaadinIcon;
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.Binder;
@@ -60,10 +61,12 @@ public class UsersForm extends FormLayout {
     void save() {
         User user = binder.getBean();
 
-        if(user.getId().equals("")) {
+        if(user.isSafeToSave() && user.getId().equals("")) {
             userFacade.registerUser(user);
-        } else {
+        } else if(user.isSafeToUpdate()) {
             userFacade.updateUser(user);
+        } else {
+            Notification.show("Fields are not filled properly!");
         }
 
         usersView.refresh("");

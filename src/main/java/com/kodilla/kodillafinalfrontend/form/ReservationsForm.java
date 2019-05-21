@@ -7,6 +7,7 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.icon.VaadinIcon;
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.Binder;
@@ -77,10 +78,12 @@ public class ReservationsForm extends FormLayout {
     void save() {
         Reservation reservation = binder.getBean();
 
-        if(reservation.getId().equals("")) {
+        if(reservation.isSafeToSave() && reservation.getId().equals("")) {
             reservationFacade.addReservation(reservation);
-        } else {
+        } else if(reservation.isSafeToUpdate()) {
             reservationFacade.updateReservation(reservation);
+        } else {
+            Notification.show("Fields are not filled properly!");
         }
 
         reservationsView.refresh("");

@@ -28,6 +28,29 @@ public class Reservation {
     private String price;
     private String paymentId;
 
+    public boolean isSafeToUpdate() {
+        return id != null &&
+                paymentId != null &&
+                this.isSafeToSave();
+    }
+
+    public boolean isSafeToSave() {
+        return thereFlightDepartureCity != null &&
+                thereFlightDepartureAirportCode != null &&
+                thereFlightDestinationCity != null &&
+                thereFlightDestinationAirportCode != null &&
+                thereFlightDate != null &&
+                returnFlightDepartureCity != null &&
+                returnFlightDepartureAirportCode != null &&
+                returnFlightDestinationCity != null &&
+                returnFlightDestinationAirportCode != null &&
+                returnFlightDate != null &&
+                name != null &&
+                surname != null &&
+                email != null &&
+                price != null;
+    }
+
     @Override
     public String toString() {
         return "Reservation{" +

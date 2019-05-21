@@ -17,6 +17,18 @@ public class NotificationPreference {
     private String minTemperature;
     private String maxPrice;
 
+    public boolean isSafeToUpdate() {
+        return userId != null && this.isSafeToSave();
+    }
+
+    public boolean isSafeToSave() {
+        return userId != null &&
+                departureCity != null &&
+                destinationCity != null &&
+                minTemperature != null &&
+                maxPrice != null;
+    }
+
     @Override
     public String toString() {
         return "NotificationPreference{" +

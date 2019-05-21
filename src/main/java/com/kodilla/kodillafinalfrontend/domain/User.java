@@ -19,6 +19,20 @@ public class User {
     private String registered;
     private Set<String> notificationIds;
 
+    public boolean isSafeToUpdate() {
+        return id != null &&
+                registered != null &&
+                notificationIds != null &&
+                isSafeToSave();
+    }
+
+    public boolean isSafeToSave() {
+        return name != null &&
+                surname != null &&
+                email != null &&
+                securePassword != null;
+    }
+
     @Override
     public String toString() {
         return "UserDto{" +
