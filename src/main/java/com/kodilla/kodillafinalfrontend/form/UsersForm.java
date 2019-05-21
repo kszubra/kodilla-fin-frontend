@@ -25,7 +25,6 @@ public class UsersForm extends FormLayout {
     private TextField surname = new TextField("surname");
     private TextField email = new TextField("email");
     private TextField securePassword = new TextField("password");
-    private TextField notificationsId = new TextField("notifications");
 
     private Binder<User> binder = new Binder<>(User.class);
 
@@ -38,7 +37,7 @@ public class UsersForm extends FormLayout {
         this.usersView = view;
         HorizontalLayout buttons = new HorizontalLayout(save, delete);
         save.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
-        add(name, surname, email, securePassword, notificationsId, buttons);
+        add(name, surname, email, securePassword, buttons);
         binder.bindInstanceFields(this);
 
         save.addClickListener(event -> save());
