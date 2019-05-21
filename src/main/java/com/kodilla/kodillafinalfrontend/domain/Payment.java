@@ -19,13 +19,17 @@ public class Payment {
     private String paymentDate;
 
     public boolean isSafeToUpdate() {
-        return id != null && this.isSafeToSave();
+        return !id.isEmpty() && this.alwaysRequiredFieldsAreFilled();
     }
 
     public boolean isSafeToSave() {
-        return status != null &&
-                value != null &&
-                paymentDate != null;
+        return id.isEmpty() && this.alwaysRequiredFieldsAreFilled();
+    }
+
+    private boolean alwaysRequiredFieldsAreFilled() {
+        return !( status == null |
+                    value.isEmpty() |
+                    paymentDate.isEmpty() );
     }
 
     @Override

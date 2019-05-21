@@ -20,17 +20,24 @@ public class User {
     private Set<String> notificationIds;
 
     public boolean isSafeToUpdate() {
-        return id != null &&
-                registered != null &&
-                notificationIds != null &&
-                isSafeToSave();
+        return !id.isEmpty() &&
+                !registered.isEmpty() &&
+                this.alwaysRequiredFieldsAreFilled();
     }
 
     public boolean isSafeToSave() {
-        return name != null &&
-                surname != null &&
-                email != null &&
-                securePassword != null;
+        return id.isEmpty() &&
+                registered.isEmpty() &&
+                notificationIds.size() == 0 &&
+                this.alwaysRequiredFieldsAreFilled();
+    }
+
+    private boolean alwaysRequiredFieldsAreFilled() {
+        return !( name.isEmpty() |
+                    surname.isEmpty() |
+                    email.isEmpty() |
+                    securePassword.isEmpty()
+                );
     }
 
     @Override

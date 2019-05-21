@@ -18,15 +18,19 @@ public class NotificationPreference {
     private String maxPrice;
 
     public boolean isSafeToUpdate() {
-        return userId != null && this.isSafeToSave();
+        return !id.isEmpty() && this.alwaysRequiredFieldsAreFilled();
     }
 
     public boolean isSafeToSave() {
-        return userId != null &&
-                departureCity != null &&
-                destinationCity != null &&
-                minTemperature != null &&
-                maxPrice != null;
+        return id.isEmpty() && this.alwaysRequiredFieldsAreFilled();
+    }
+
+    private boolean alwaysRequiredFieldsAreFilled() {
+        return !( userId.isEmpty() |
+                    departureCity.isEmpty() |
+                    destinationCity.isEmpty() |
+                    minTemperature.isEmpty() |
+                    maxPrice.isEmpty() );
     }
 
     @Override

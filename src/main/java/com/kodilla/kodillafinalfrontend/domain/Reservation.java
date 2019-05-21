@@ -12,6 +12,7 @@ import java.util.Objects;
 public class Reservation {
 
     private String id;
+    private String paymentId;
     private String thereFlightDepartureCity;
     private String thereFlightDepartureAirportCode;
     private String thereFlightDestinationCity;
@@ -26,29 +27,36 @@ public class Reservation {
     private String surname;
     private String email;
     private String price;
-    private String paymentId;
+
 
     public boolean isSafeToUpdate() {
-        return id != null &&
-                paymentId != null &&
-                this.isSafeToSave();
+        return !id.isEmpty() &&
+                !paymentId.isEmpty() &&
+                this.alwaysRequiredFieldsAreFilled();
+
     }
 
     public boolean isSafeToSave() {
-        return thereFlightDepartureCity != null &&
-                thereFlightDepartureAirportCode != null &&
-                thereFlightDestinationCity != null &&
-                thereFlightDestinationAirportCode != null &&
-                thereFlightDate != null &&
-                returnFlightDepartureCity != null &&
-                returnFlightDepartureAirportCode != null &&
-                returnFlightDestinationCity != null &&
-                returnFlightDestinationAirportCode != null &&
-                returnFlightDate != null &&
-                name != null &&
-                surname != null &&
-                email != null &&
-                price != null;
+        return id.isEmpty() &&
+                paymentId.isEmpty() && this.alwaysRequiredFieldsAreFilled();
+
+    }
+
+    private boolean alwaysRequiredFieldsAreFilled() {
+        return !( thereFlightDepartureCity.isEmpty() |
+                    thereFlightDepartureAirportCode.isEmpty() |
+                    thereFlightDestinationCity.isEmpty() |
+                    thereFlightDestinationAirportCode.isEmpty() |
+                    thereFlightDate.isEmpty() |
+                    returnFlightDepartureCity.isEmpty() |
+                    returnFlightDepartureAirportCode.isEmpty() |
+                    returnFlightDestinationCity.isEmpty() |
+                    returnFlightDestinationAirportCode.isEmpty() |
+                    returnFlightDate.isEmpty() |
+                    name.isEmpty() |
+                    surname.isEmpty() |
+                    email.isEmpty() |
+                    price.isEmpty() );
     }
 
     @Override
