@@ -18,7 +18,7 @@ import org.springframework.util.StringUtils;
 @Component
 @UIScope
 @Route()
-public class NotificationPreferencesView extends VerticalLayout { // address depends on class name, with  "PaymentView" address was http://localhost:8081/payment
+public class NotificationPreferencesView extends VerticalLayout {
     private final NotificationPreferenceFacade preferencesFacade;
     private NotificationPreferencesForm preferencesForm;
     private Grid<NotificationPreference> grid;

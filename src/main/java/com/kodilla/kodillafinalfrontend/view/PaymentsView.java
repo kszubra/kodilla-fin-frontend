@@ -21,7 +21,7 @@ import java.util.regex.Pattern;
 @Component
 @UIScope
 @Route()
-public class PaymentsView extends VerticalLayout { // address depends on class name, with  "PaymentView" address was http://localhost:8081/payment
+public class PaymentsView extends VerticalLayout {
     private final PaymentFacade paymentFacade;
     private PaymentsForm paymentsForm;
     private Grid<Payment> grid;
