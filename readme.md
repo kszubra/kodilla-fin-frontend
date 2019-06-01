@@ -8,8 +8,9 @@ REST mechanics are presented via front-end project: https://floating-lake-32865.
 You may happen to see "application error" at first. Just reload the page.
 
 # 3. BACK-END REPOSITORY
+Due to not being an accepted version, code is in the working branch, not master.
 
-https://github.com/kszubra/kodilla-fin-backend
+https://github.com/kszubra/kodilla-fin-backend/tree/Back-end_Final
 
 # 4. RUNNING PROJECT LOCALLY
 
